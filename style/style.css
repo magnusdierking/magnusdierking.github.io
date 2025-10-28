@@ -1,0 +1,303 @@
+:root{
+    --bg:#0b0f17; 
+    --surface:#0b1220;
+    --grid:#1f2a44; 
+    --text:#e6edf6; 
+    --muted:#8BB4DF; 
+    --accent:#9C90DD; 
+    --accent2:#9156D1;
+    --page-pad: 16px;
+    --content-max: 1120px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;
+     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji"; 
+     background:var(--bg); 
+     color:var(--text)}
+
+.wrap{position: relative; 
+      max-width:980px;
+      margin:0 auto;
+      padding:24px}
+
+
+header, section{position:relative}
+h1,h2{margin:0 0 12px}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.15}
+h2{font-size:clamp(18px,3vw,26px)}
+p{color:var(--muted);line-height:1.6}
+
+a.btn{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:12px;background:var(--accent2);color:#051018;text-decoration:none;font-weight:600;border:1px solid --accent}
+a.btn.outline{background:transparent;color:var(--text);border-color:#1f2a44}
+
+.grid-card{background:rgba(15,23,42,.6);
+           border:1px solid #334155;
+           border-radius:16px;
+           padding:16px}
+.cols{display:grid;
+      grid-template-columns:1fr;
+      gap:16px}
+@media(min-width:900px){.cols{grid-template-columns:1.15fr .85fr}}
+.numbers{position:absolute;inset:0;z-index:0}
+.hero,.about,.projects,.contact{margin-top:18px;padding-top:18px}
+.muted{color:var(--muted)}
+footer{margin:32px 0;color:#94a3b8;font-size:12px;display:flex;justify-content:space-between}
+.row{display:flex;gap:8px;align-items:center;margin:6px 0}
+input[type=number]{width:80px;background:#0b1220;color:var(--text);border:1px solid #334155;border-radius:10px;padding:6px 8px}
+
+.badge{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; 
+       font-size:12px; 
+       color:#cbd5e1; 
+       background:#0b1220; 
+       border:1px solid #334155; 
+       border-radius:10px; 
+       padding:2px 8px}
+
+.cards{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+
+
+.hidden { display: none; }
+
+.fade-in, .fade-out { animation: none; }  /* override old animations */
+
+
+@keyframes fadeIn   { from { opacity:0; transform: translateY(6px) } to { opacity:1; transform:none } }
+@keyframes fadeOut  { from { opacity:1; transform:none } to { opacity:0; transform: translateY(6px) } }
+
+/* --- View transitions --- */
+.view {
+  opacity: 1;
+
+  transform: translateY(0);
+  transition: opacity 950ms ease, transform 550ms ease;
+}
+
+.hidden {
+  display: block;           /* keep layout flow predictable */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+.fade-out {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+}
+
+.fade-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* --- Background grid transform per view --- */
+#bg {
+  transition: transform 600ms ease, filter 600ms ease, opacity 300ms ease;
+}
+
+#bg.bg-home {
+  transform: none;
+  filter: none;
+}
+
+/* 3) Make the Projects view an overlay that fills the viewport */
+#projects {
+  padding-inline: var(--page-pad);
+  position: fixed;   /* take it out of normal flow → no gap where it's declared */
+  inset: 0;          /* top:0; right:0; bottom:0; left:0 */
+  z-index: 9;        /* below header (10), above background */
+  overflow: auto;    /* scroll if content is tall */
+  top: 40px;      /* push content below the sticky header height */
+  background: transparent; /* or var(--bg) if you want an opaque layer */
+  max-width:980px;
+  margin:0 auto;
+  padding:24px;
+}
+
+#notes {
+  padding-inline: var(--page-pad);
+  position: fixed;   /* take it out of normal flow → no gap where it's declared */
+  inset: 0;          /* top:0; right:0; bottom:0; left:0 */
+  z-index: 9;        /* below header (10), above background */
+  overflow: auto;    /* scroll if content is tall */
+  padding-top: 50px; /* push content below the sticky header height */
+  background: transparent; /* or var(--bg) if you want an opaque layer */
+  top: 40px;      /* push content below the sticky header height */
+  max-width:980px;
+  margin:0 auto;
+  padding:24px;
+}
+
+/* 4) Hide state that doesn't break layout or interactions */
+.hidden {
+  visibility: hidden;     /* not visible */
+  pointer-events: none;   /* not clickable */
+  opacity: 0;             /* if you later add transitions */
+}
+
+/* Grid cards style */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px; /* increase space between cards */
+}
+
+
+/* --- Smaller Effects --- */
+/* Button with shine effect on hover */
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.15);
+  transform: skewX(-20deg);
+  transition: left 0.4s ease;
+}
+.btn:hover::after {
+  left: 100%;
+}
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+
+
+/* CONTACT link styles */
+.contact a {
+  color: var(--accent2); /* your desired color */
+  text-decoration: none; /* optional */
+}
+.contact a:hover {
+  color: var(--accent); /* hover color */
+  transform: scale(1.5);
+}
+
+
+/* --- CONTACT section layout --- */
+.contact-links {
+  display: flex;
+  justify-content: flex-start;  /* centers all icons horizontally */
+  align-items: center;
+  gap: 20px;                 /* spacing between icons */
+  margin-top: 16px;
+  margin-left: 8px;
+}
+
+/* --- ICON appearance --- */
+.contact-links i {
+  width: 40px;
+  height: 40px;
+  color: var(--accent);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* --- Hover effect on links --- */
+.contact-links a:hover i {
+  color: var(--accent2);
+}
+
+
+
+
+/* --- Grid Cards --- */
+.grid-card {
+  background: var(--surface);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: auto;
+  margin-top: 10px;
+  align-items: stretch; /* make items equal height */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* fill the grid track */
+}
+
+.grid-card.zoom:hover {
+  transform: scale(1.05); /*translateY(-4px);*/
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.grid-card.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.grid-card:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.grid-card img {
+  width: 100%;
+  height: 160px;             /* adjust height */
+  object-fit: cover;         /* crop nicely */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #334155; /* subtle frame (optional) */
+}
+
+.grid-card a {
+  margin-top: auto;   /* pushes link to the bottom */
+}
+
+.grid-card strong {
+  display: block;
+  min-height: 2.2em;   /* enough for 2 short lines */
+  line-height: 1.2;
+  margin-bottom: 6px;  /* space before paragraph */
+}
+
+.highlight {
+  color: var(--accent, #9b5cff);        /* accent color */
+  font-weight: 500;                     /* subtle emphasis */
+  padding: 0 2px;
+  border-radius: 4px;
+}
+
+
+/* --- Badges --- */
+nav a {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+
+
+/* Venues for papers */
+
+.venue {
+  margin-top: 8px;             /* adds vertical space */
+  /* font-size: 13px;
+  color: var(--accent, #9b5cff);
+  line-height: 1.4; */
+}

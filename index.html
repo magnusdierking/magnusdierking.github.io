@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Website</title>
+
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/carousel.css" />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+
+  
+</head>
+<body>
+  <canvas id="bg" class="numbers" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <header>
+      <div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:8px;height:8px;border-radius:999px;background:var(--accent);box-shadow:0 0 12px var(--accent)"></div>
+          <span class="badge">/home</span>
+        </div>
+        <nav class="muted" style="display:flex;gap:16px;font-size:14px">
+          <a href="#about" class="muted">about</a>
+          <a href="#projects" class="muted">projects</a>
+          <a href="#notes" class="muted">notes</a>
+          <a href="#contact" class="muted">contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="homeView" class="view">
+      <section class="hero">
+
+        <div class="cols">
+          <!-- Hero Text -->
+          <div style="position:relative;z-index:1">
+            <h1>Building things that <span style="color:var(--accent)">perceive, act and learn</span>.</h1>
+            <p>Robotics engineer & computer scientist with a passion for mathematics.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px">
+              <a id="openProjects" class="btn">My projects →</a>
+              <a id="openNotes" class="btn">My notes →</a>
+            </div>
+          <section id="contact" class="contact">
+            <div class="contact-links">
+              <a href="mailto:mag.dierking@gmail.com" title="Email" target="_blank">
+                <i data-lucide="mail"></i>
+              </a>
+              <a href="https://github.com/magnusdierking" title="GitHub" target="_blank">
+                <i data-lucide="github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/magnus-dierking-519b86337" title="LinkedIn" target="_blank">
+                <i data-lucide="linkedin"></i>
+              </a>
+            </div>
+          </section>
+          </div>
+          <!-- Hero Image -->
+          <div class="grid-card" style="position:relative;z-index:1">
+            <canvas id="demo" style="width:100%;height:260px;border-radius:12px;border:1px solid #334155"></canvas>
+            <p class="view" style="margin-top:0">ToDO help me change my frame of reference</p>
+            <!-- <div class="row">
+              <span class="badge">A = [[a11, a12],[a21, a22]]</span>
+            </div> -->
+            <div class="row">
+              <label class="badge">a11</label><input id="a11" type="number" step="0.1" value="1">
+              <label class="badge">a12</label><input id="a12" type="number" step="0.1" value="1">
+              <label class="badge">a21</label><input id="a21" type="number" step="0.1" value="1">
+              <label class="badge">a22</label><input id="a22" type="number" step="0.1" value="1">
+            </div>
+            <div class="row">
+              <span class="badge">v = [vx, vy]</span>
+              <input id="vx" type="number" step="0.1" value="1">
+              <input id="vy" type="number" step="0.1" value="1">
+              <span class="badge" id="out">Av = [?, ?]</span>
+            </div>
+          </div>
+        </div>
+      
+      </section>
+
+      <section id="about" class="about">
+        <h2 class="fade-item">About</h2>
+        <div class="grid-card">
+          <p>Hi, I'm <span class="highlight">Magnus</span>.<br> 
+            I am working to bring together robotics and modern AI, combining perception, control, and planning with <span class="highlight">Generative Models</span>, <span class="highlight">Reinforcement Learning</span> and <span class="highlight">Foundation Models</span>.
+            
+            While these approaches have revolutionized how we represent and interact with information through text, images, and video, I believe that making robots truly intelligent requires a deeper grounding in first principles.
+
+            This grounding, I think, must come through inductive biases — mathematical structures that capture the patterns and regularities of our world, allowing learning systems to exploit them more effectively.
+            For me, the most promising frameworks to achieve this lie in the realms of <span class="highlight">Information Theory</span>, <span class="highlight">Optimization</span> and <span class="highlight">Lie Theory</span>, 
+            the languages of uncertainty and decision making, efficiency and structure and symmetry.<br><br>
+
+            While I am slowly but surely gradient descending into the local minimum many refer to as madness, I’m also an avid reader, traveler, and gym rat.
+          </p>
+        </div>
+      </section>
+
+      <section id="news" class="news">
+        <h2 class="fade-item">News</h2>
+        <div class="grid-card">
+          <p>ToDo (Card Carousel ?)</p>
+        </div>
+      </section>
+      <!-- <div id="newsCarousel" class="carousel" aria-label="News carousel" tabindex="1"></div> -->
+
+
+      <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <div class="grid-card">
+          <p>Email: <a href="mailto:mag.dierking@gmail.com" target="_blank">mag.dierking@gmail.com</a></p>
+          <p>GitHub: <a href="https://github.com/magnusdierking" target="_blank">github.com/magnusdierking</a></p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/magnus-dierking-519b86337" target="_blank">github.com/magnusdierking</a></p>
+        </div>
+      </section>
+
+    </div>
+    <!-- Home Page -->
+
+    <!-- Project Page -->
+    <div id="projects" class="hidden">
+      <a id="backHome" class="btn outline">← Back</a>
+      <br>
+      <h2>Paper</h2>
+      <div class="cards">
+        <div class="grid-card zoom">
+          <img src="media/manifold.png" alt="Tensorviz preview">
+          <strong>Ark</strong>
+          <div class="venue">
+            <span class="badge">Preprint</span> arXiv, 2025
+          </div>
+          <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a href="https://example.com" target="_blank" rel="noopener" class="muted">
+            View Paper
+          </a>
+        </div>
+
+        <div class="grid-card zoom">
+          <img src="media/manifold.png" alt="Tensorviz preview">
+          <strong>PyRobot</strong>
+          <div class="venue">
+            <span class="badge">Journal</span> IEEE RA-L, 2025
+          </div>
+          <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a href="https://example.com" target="_blank" rel="noopener" class="muted">
+            View Paper
+          </a>
+        </div>
+
+        <div class="grid-card zoom">
+          <img src="media/manifold.png" alt="Tensorviz preview">
+          <strong>More</strong>
+          <p class="muted">...</p>
+        </div>
+
+      </div>
+      <br>
+      <br>
+      <!-- University Master -->
+      <h2>University Projects</h2>
+      <div class="cards">
+        
+        <div class="grid-card zoom">
+          <img src="media/manifold.png" alt="Tensorviz preview">
+          <strong>Model Tensor Planning</strong>
+          <p class="muted">Master Thesis Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a href="files/Intelligent_Robotic_Manipulation_Final_Project.pdf" target="_blank" rel="noopener" class="muted">View PDF</a>
+        </div>
+
+        <div class="grid-card zoom">
+          <img src="media/smoothing.png" alt="Tensorviz preview">
+          <strong>Evasive Pick and Place</strong>
+          <p class="muted">Collaborative project developing a robotic control system for a Franka Emika Panda in a dynamic simulation environment.
+                           Focused on enabling the robot to grasp and transport objects while evading randomly moving obstacles. 
+                           The pipeline integrates real-time object tracking, advanced inverse kinematics with secondary objectives, and sampling-based motion planning to achieve adaptive, collision-free manipulation.</p>
+          <a href="files/Intelligent_Robotic_Manipulation_Final_Project.pdf" target="_blank" rel="noopener" class="muted">View PDF</a>
+        </div>
+
+        <div class="grid-card zoom">
+          <img src="media/project.png" alt="Tensorviz preview">
+          <strong>SO(3) Diffusion Model</strong>
+          <p class="muted">Personal student project exploring the mathematical structures behind 3D rotations and rigid body transformations through Lie Theory.
+                           A deep dive into the underlying theory and its applications, presented in an intuitive and visual way. 
+                           The project includes the implementation of a Diffusion Model on the manifold SO(3) and explores the impact of using non-Euclidean Brownian noise and geometric loss metrics.</p>
+          <a href="files/Student_Project_Report.pdf" target="_blank" rel="noopener" class="muted">View PDF</a>
+        </div>
+
+        <div class="grid-card zoom">
+          <img src="media/ot.png" alt="Tensorviz preview">
+          <strong>Optimal Transport Seminar</strong>
+          <p class="muted">Seminar project exploring the connection between information theory and optimal transport through the InfoOT framework. 
+                           Studied how mutual information and entropic regularization can be combined to align data distributions, supported by implementations using Sinkhorn optimization and kernel density estimation.</p>
+          <a href="files/blog_dierking.pdf" target="_blank" rel="noopener" class="muted">View PDF</a>
+        </div>
+
+        <div class="grid-card zoom">
+          <img src="media/latent_cond.png" alt="Tensorviz preview">
+          <strong>Medical Imaging VAE</strong>
+          <p class="muted">Collaborative project developing a conditional VAE trained on a combination of medical imaging datasets. 
+                           Focused on learning structured latent representations conditioned on metadata such as imaging modality or pathology. 
+                           Explored data harmonization, cross-domain generalization, and visual synthesis to evaluate how conditioning improves generative performance across heterogeneous medical data.</p>
+        </div>
+
+        <div class="grid-card zoom">
+          <img src="media/matrices.png" alt="Tensorviz preview">
+          <strong>Parallel Solution of Linear Systems arising in Domain Decomposition Methods</strong>
+          <p class="muted">Bachelor Thesis on implementing a parallel solver for large-scale surface PDEs within an Isogeometric Analysis (IGA) framework. Developed a C++ implementation of the dual-primal IETI-DP algorithm based on Schur decomposition, enabling efficient parallel solutions of domain-decomposed problems. 
+                           Verified the implementation on the Laplace–Beltrami operator using spherical harmonics, achieving the expected convergence behavior and strong runtime scaling.</p>
+          <a href="files/Dierking2022aa.pdf" target="_blank" rel="noopener" class="muted">View PDF</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Notes Page -->
+    <div id="notes" class="hidden2">
+      <a id="backHome2" class="btn outline">← Back</a>
+      <h2>My Notes</h2>
+      <div class="cards">
+        <div class="grid-card"><strong>Disclaimer</strong>
+          <p class="muted">After my Bachelor thesis I started creating a personal knowledge database using <span class="highlight">Obsidian</span>. 
+                           I kept using it until today, through my masters, internship and personal side projects. 
+                           The notes are and will always be a work in progress - thats the beauty of it. 
+                           Their quality varies from quick sketches to nearly blog-ready articles. I use several custom callouts and plugins that aren’t preserved in export, so some interface elements may appear a bit off.</p></div>
+      </div>
+    </div>
+
+    <footer>
+      <span class="badge">det(A) ≠ 0</span>
+      <span>© <span id="year"></span> Magnus Dierking</span>
+    </footer>
+  </div>
+
+
+  <!-- Link to JavaScript file -->
+  <script src="scripts/main.js"></script>
+  <script src="scripts/carousel.js"></script>
+
+</body>
+</html>
