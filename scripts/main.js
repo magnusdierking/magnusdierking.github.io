@@ -7,12 +7,12 @@ const bgCtx = bg.getContext('2d');
 let mode = 'home';            // current view
 let prevMode = 'home';        // view we are transitioning from
 let progress = 1;             // 0..1 transition progress
-const TRANSITION_MS = 1200;   // feel free to tweak
+const TRANSITION_MS = 800;   // feel free to tweak
 
 // Fade timings (ms)
 const FADE_OUT_MS = 1000;
 const FADE_IN_MS  = 1000;
-const BETWEEN_DELAY_MS = 500; // delay between fade-out and fade-in
+const BETWEEN_DELAY_MS = 100; // delay between fade-out and fade-in
 
 const homeEl = document.getElementById('home');
 const projectsEl = document.getElementById('projects');
