@@ -24,6 +24,31 @@ const backBtn = document.getElementById('backHome');
 const notesBtn = document.getElementById('openNotes');
 const backBtn2 = document.getElementById('backHome2');
 
+// --- Curved manifold mode ---
+let curvature = 0.0; // 0 = flat grid, 1 = fully curved
+const CURVATURE_BY_VIEW = { home: 0.0, projects: -0.45, notes: 0.65 };
+
+// --- Functions to update badge ---
+const badge = document.querySelector('.badge');
+const BADGE = {home: '/home', projects: '/home/projects', notes: '/home/notes'};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function startTransition(next) {
   if (mode === next) return;
   prevMode = mode;
@@ -31,111 +56,13 @@ function startTransition(next) {
   progress = 0; // begin interpolation
 }
 
-// --- Functions to update badge ---
-const badge = document.querySelector('.badge');
-function setHome()       { badge.textContent = '/home'; }
-function setProjects()   { badge.textContent = '/home/projects'; }
-function setNotes()      { badge.textContent = '/home/notes'; }
+
+projectsBtn?.addEventListener('click', () => switchView('projects'));
+notesBtn?.addEventListener('click', () => switchView('notes'));
+backBtn?.addEventListener('click', () => switchView('home'));
+backBtn2?.addEventListener('click', () => switchView('home'));
 
 
-// --- View switch functions ---
-function showProjects() {
-  startTransition('projects');
-  homeEl.classList.add('fade-out');
-  setTimeout(() => { homeEl.classList.add('hidden'); homeEl.classList.remove('fade-out'); }, FADE_OUT_MS);
-
-  notesEl.classList.add('hidden');
-  projectsEl.classList.remove('hidden','home');
-  setTimeout(() => { projectsEl.classList.add('fade-in'); setTimeout(()=>projectsEl.classList.remove('fade-in'), FADE_IN_MS); }, BETWEEN_DELAY_MS);
-}
-
-function showNotes() {
-  startTransition('notes');
-  homeEl.classList.add('fade-out');
-  setTimeout(() => { homeEl.classList.add('hidden'); homeEl.classList.remove('fade-out'); }, FADE_OUT_MS);
-
-  projectsEl.classList.add('hidden2');
-  notesEl.classList.remove('hidden','home');
-  setTimeout(() => {notesEl.classList.add('fade-in');setTimeout(()=>notesEl.classList.remove('fade-in'), FADE_IN_MS);}, BETWEEN_DELAY_MS);
-}
-
-function showHome() {
-  startTransition('home');
-  homeEl.classList.remove('hidden');
-  [projectsEl, notesEl].forEach(el => {
-    el.classList.add('fade-out');
-    setTimeout(() => { el.classList.add('hidden'); el.classList.remove('fade-out'); }, FADE_OUT_MS);
-  });
-
-  homeEl.classList.remove('hidden', 'hidden2');
-  homeEl.classList.add('fade-in');
-  setTimeout(() => homeEl.classList.remove('fade-in'), FADE_IN_MS);
-}
-
-openProjects.addEventListener('click', () => {
-  setProjects();
-});
-backHome.addEventListener('click', () => {
-  setHome();
-});
-openNotes.addEventListener('click', () => {
-  setNotes();
-});
-backHome2.addEventListener('click', () => {
-  setHome();
-});
-
-// --- Nav link listeners ---
-document.querySelector('a[href="#projects"]').addEventListener('click', e => {
-  e.preventDefault();
-  setProjects();
-  document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
-});
-
-document.querySelector('a[href="#notes"]').addEventListener('click', e => {
-  e.preventDefault();
-  setNotes();
-  document.querySelector('#notes').scrollIntoView({ behavior: 'smooth' });
-});
-
-document.querySelector('a[href="#about"]').addEventListener('click', e => {
-  e.preventDefault();
-  setHome();
-  document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
-});
-
-document.querySelector('a[href="#contact"]').addEventListener('click', e => {
-  e.preventDefault();
-  setHome();
-  document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-});
-
-projectsBtn?.addEventListener('click', showProjects);
-notesBtn?.addEventListener('click', showNotes);
-backBtn?.addEventListener('click', showHome);
-backBtn2?.addEventListener('click', showHome);
-
-
-// CURVATURE MANIFOLD 
-
-// Example wiring; keep your existing handlers and just add setCurvature(...)
-projectsBtn.addEventListener('click', () => {
-  setCurvature(-0.4, 2000);   // curve in
-});
-backBtn.addEventListener('click', () => {
-  setCurvature(0.0, 1000);   // flatten out
-});
-
-// If Notes should also be curved:
-notesBtn.addEventListener('click', () => {
-  setCurvature(0.9, 2000);
-});
-backHome2.addEventListener('click', () => {
-  setCurvature(0.0, 1000);
-});
-
-// --- Curved manifold mode ---
-let curvature = 0; // 0 = flat grid, 1 = fully curved
 
 // Smoothly animate curvature
 function setCurvature(target = 0, duration = 600) {
@@ -205,6 +132,7 @@ function tick(ts){
 }
 
 
+
 function drawBG() {
   const dpr = window.devicePixelRatio || 1;
   const { width, height } = bg.getBoundingClientRect();
@@ -225,16 +153,16 @@ function drawBG() {
   const k = easeInOut(progress);
 
   // Small ambient motion that is always present
-  const baseRot = Math.sin(t * 0.2) * 0.06;
-  const baseScl = 1.0 + 0.05 * Math.sin(t * 0.6);
+  const baseRot = Math.sin(t * 0.2) * 0.09;
+  const baseScl = 1.05 + 0.0005 * Math.sin(t * 0.6);
 
   // Define target params for each page
   function paramsFor(view) {
     switch (view) {
       case 'projects':
-        return { rot: 0.55, shx: 1.65, shy: 0.00, sclBoost: 0.5, tx: 0,  ty: 0  };
+        return { rot: 0.35, shx: 1.65, shy: 0.00, sclBoost: 0.2, tx: 10,  ty: -60  };
       case 'notes':
-        return { rot: -0.20, shx: 0.50, shy: 0.25, sclBoost: 0.2, tx: 60, ty: -30 };
+        return { rot: -0.20, shx: 0.50, shy: 0.25, sclBoost: 0.25, tx: 60, ty: -30 };
       default: // 'home'
         return { rot: 0.00, shx: 0.00, shy: 0.00, sclBoost: 0.00, tx: 0,  ty: 0  };
     }
@@ -445,9 +373,12 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
   // Ensure Projects/Notes participate as "views"
   ['projects', 'notes'].forEach(v => views[v]?.classList.add('view', 'hidden'));
 
-  // Initial state
   let current = (location.hash.replace('#', '') || 'home');
-  if (!views[current]) current = 'home';
+  if (!['home','projects','notes'].includes(current)) current = 'home';
+  mode = current;       // <- add this
+  prevMode = current;   // <- add this
+  progress = 1;         // <- add this (already “arrived”)
+  setCurvature(CURVATURE_BY_VIEW[current] ?? 0, 0);
 
   function setBg(view) {
     bgEl.classList.remove('bg-home', 'bg-projects', 'bg-notes');
@@ -459,13 +390,33 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
       if (badge) badge.textContent = `/${current}`;
     }
 
-    async function switchView(next) {
-    if (!views[next] || next === current) return;
+  // View Switching Logic  
+  async function switchView(next) {
+    const views = { home: homeEl, projects: projectsEl, notes: notesEl };
+    if (!views[next]) next = 'home';
+    if (next === (mode || 'home')) return;
 
-    const curEl = views[current];
+    // Start BG transition (used by drawBG)
+    prevMode = mode;
+    mode = next;
+    progress = 0;
+
+    // Keep 'home' marker in sync, so home styles don't leak into other views
+    (['home','projects','notes']).forEach(v => {
+      const el = { home: homeEl, projects: projectsEl, notes: notesEl }[v];
+      if (!el) return;
+      if (v === next) el.classList.add('home'); else el.classList.remove('home');
+    });
+
+
+    // Update badge & curvature target
+    if (badge) badge.textContent = BADGE[next] || '/home';
+    setCurvature(CURVATURE_BY_VIEW[next] ?? 0, 1000);
+
+    // Fade out current
+    const curEl = views[prevMode] || views.home;
     const nextEl = views[next];
 
-    // fade out current
     if (curEl) {
       curEl.classList.add('fade-out');
       await new Promise(r => setTimeout(r, FADE_OUT_MS));
@@ -473,24 +424,17 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
       curEl.classList.remove('fade-out');
     }
 
-    // optional gap between views
     if (BETWEEN_DELAY_MS) await new Promise(r => setTimeout(r, BETWEEN_DELAY_MS));
 
-    // transform background as you do now
-    setBg(next);
-
-    // fade in next
-    nextEl.classList.remove('hidden');
+    // Fade in next
+    nextEl.classList.remove('hidden', 'hidden2');
     nextEl.classList.add('fade-in');
-
-    // allow paint (1–2 rafs is more robust than 20ms magic number)
+    // let layout settle before timing the fade
     await new Promise(r => requestAnimationFrame(()=>requestAnimationFrame(r)));
-
     await new Promise(r => setTimeout(r, FADE_IN_MS));
     nextEl.classList.remove('fade-in');
 
-    current = next;
-    history.pushState({ view: next }, '', `#${next}`);
+    history.pushState({ view: next }, '', next === 'home' ? '#home' : `#${next}`);
   }
 
   // Hook header nav: #projects and #notes go to their views; others stay on home and scroll
@@ -540,3 +484,6 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
 
 // --- Icons
 lucide.createIcons();
+
+
+
