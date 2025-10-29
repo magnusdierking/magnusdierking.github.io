@@ -277,13 +277,14 @@ requestAnimationFrame(tick);
 function resizeBG(){bg.style.width='100%';bg.style.height='100%';drawBG();}
 
 
-// ----- Simple 2D linear transform demo -----
-// --- Fixed image setup ---
+// ----- 2D Transform Demo -----
 const img = new Image();
 let imgReady = false;
-img.src = "media/me.jpeg"; // change path to your image
-img.onload = () => { imgReady = true; render(); };
+img.src = "media/me.jpg"; // change path to your image
+img.onload = () => { imgReady = true; 
+                     render(); };
 img.onerror = () => console.warn("Could not load fixed image");
+
 
 const c = document.getElementById('demo'); const ctx = c.getContext('2d');
 
@@ -296,30 +297,40 @@ function render(){
 
   const W = rect.width, H = rect.height;
   // background
-  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+  // ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+  ctx.fillStyle = '#efefef';
   ctx.fillRect(0, 0, W, H);
 
   // read matrix + vector
   const A = [[n('a11'), n('a12')],[n('a21'), n('a22')]];
   const v = [n('vx'), n('vy')];
-  const Av = [A[0][0]*v[0] + A[0][1]*v[1], A[1][0]*v[0] + A[1][1]*v[1]];
-  document.getElementById('out').textContent = `Av = [${Av[0].toFixed(2)}, ${Av[1].toFixed(2)}]`;
+  // const Av = [A[0][0]*v[0] + A[0][1]*v[1], A[1][0]*v[0] + A[1][1]*v[1]];
+  // document.getElementById('out').textContent = `Av = [${Av[0].toFixed(2)}, ${Av[1].toFixed(2)}]`;
 
   // nothing to draw until an image is loaded
   if (!imgReady) {
     // helpful placeholder
     ctx.font = '14px system-ui, sans-serif';
-    ctx.fillStyle = '#94a3b8';
+    ctx.fillStyle = '#ffffffff';
     ctx.textAlign = 'center';
     ctx.fillText('Choose an image to transform', W/2, H/2);
     return;
   }
+  // pixels to cut off from each side (customize these)
+  const crop = { left: 0, right: 0, top: 150, bottom: 0};
 
+  // safe source rect (image space)
+  const sx = Math.max(0, crop.left);
+  const sy = Math.max(0, crop.top);
+  const sWidth  = Math.max(1, img.width  - crop.left - crop.right);
+  const sHeight = Math.max(1, img.height - crop.top  - crop.bottom);
   // center + scale-to-fit BEFORE transform, then apply A and translation v
   const ox = W/2, oy = H/2;
   const unit = Math.min(W, H) / 8;        // "grid unit" so v behaves like before
-  const zoom = Math.min((W*0.6)/img.width, (H*0.6)/img.height); // fit nicely
-
+  const zoom = Math.min((W*1.15)/img.width, (H*1.15)/img.height); // fit nicely
+  
+  const dw = sWidth  * zoom;
+  const dh = sHeight * zoom;
   ctx.save();
   ctx.translate(ox, oy);
 
@@ -330,7 +341,12 @@ function render(){
   // draw image centered at origin, scaled
   const iw = img.width * zoom;
   const ih = img.height * zoom;
-  ctx.drawImage(img, -iw/2, -ih/2, iw, ih);
+  ctx.drawImage(
+    img,
+    sx, sy, sWidth, sHeight,  // crop box in the source image
+    -dw/2, -dh/2, dw, dh      // destination rect in canvas space
+  );
+
 
   ctx.restore();
 

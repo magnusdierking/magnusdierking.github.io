@@ -47,7 +47,9 @@ a.btn.outline{background:transparent;color:var(--text);border-color:#1f2a44}
 .hero,.about,.projects,.contact{margin-top:18px;padding-top:18px}
 .muted{color:var(--muted)}
 footer{margin:32px 0;color:#94a3b8;font-size:12px;display:flex;justify-content:space-between}
-.row{display:flex;gap:8px;align-items:center;margin:6px 0}
+.row{display:flex;
+     justify-content:center;
+     gap:6px;align-items:center;margin:4px 0}
 input[type=number]{width:80px;
                    background:#0b1220;
                    color:var(--muted);
@@ -78,7 +80,7 @@ input[type=number]{width:80px;
 /* --- View transitions --- */
 .view {
   opacity: 1;
-
+  /* background: var(--text); */
   transform: translateY(0);
   transition: opacity 950ms ease, transform 550ms ease;
 }

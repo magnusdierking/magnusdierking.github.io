@@ -7,7 +7,7 @@
 
   <!-- Link to external stylesheet -->
   <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/carousel.css" />
+  <!-- <link rel="stylesheet" href="style/carousel.css" /> -->
 
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -60,25 +60,37 @@
           </section>
           </div>
           <!-- Hero Image -->
-          <div class="grid-card" style="position:relative;z-index:1; max-width:360px;">
-            <canvas id="demo" style="width:100%;height:240px;border-radius:12px;border:1px solid #334155"></canvas>
-            <p class="view" style="margin-top:0">ToDO help me change my frame of reference</p>
+          <div class="grid-card" style="position:relative;z-index:1; max-width:400px; max-height:480px;">
+            <canvas id="demo" style="width:100%;height:350px;align-items:center;border-radius:12px;border:1px solid #334155;"></canvas>
+            <p class="view" style="margin-top:0; align-items:center;">Help me change my frame of reference ...</p>
             <!-- <div class="row">
               <span class="badge">A = [[a11, a12],[a21, a22]]</span>
             </div> -->
             <div class="row">
-              <label class="badge">a11</label><input id="a11" type="number" step="0.1" value="1">
-              <label class="badge">a12</label><input id="a12" type="number" step="0.1" value="1">
+              <!-- <label class="badge">H11</label> -->
+              <input id="a11" type="number" step="0.1" value="1">
+              <!-- <label class="badge">H12</label> -->
+              <input id="a12" type="number" step="0.1" value="0">
+              <!-- <label class="badge">H13</label> -->
+              <input id="vx" type="number" step="0.1" value="0">
             </div>
             <div class="row">
-              <label class="badge">a21</label><input id="a21" type="number" step="0.1" value="1">
-              <label class="badge">a22</label><input id="a22" type="number" step="0.1" value="1">
+              <!-- <label class="badge">H21</label> -->
+              <input id="a21" type="number" step="0.1" value="0">
+              <!-- <label class="badge">H22</label> -->
+              <input id="a22" type="number" step="0.1" value="1">
+              <!-- <label class="badge">H23</label> -->
+              <input id="vy" type="number" step="0.1" value="0">
             </div>
             <div class="row">
               <!-- <span class="badge">v = [vx, vy]</span> -->
-              <input id="vx" type="number" step="0.1" value="1">
-              <input id="vy" type="number" step="0.1" value="1">
-              <span class="badge" id="out">Av = [?, ?]</span>
+              <!-- <label class="badge">H31</label> -->
+              <input id="a" type="number" step="0.1" value="0">
+              <!-- <label class="badge">H32</label> -->
+              <input id="b" type="number" step="0.1" value="0">
+              <!-- <label class="badge">H33</label> -->
+              <input id="c" type="number" step="0.1" value="1">
+              <!-- <span class="badge" id="out">Av = [?, ?]</span> -->
             </div>
           </div>
         </div>
@@ -132,7 +144,7 @@
                 <div class="eq">=</div>
 
                 <div class="rhs" id="rhs">
-                  <span class="muted">Select a vector ←</span>
+                  <span class="muted">← Select a vector</span>
                 </div>
               </div>
             </div>
@@ -312,7 +324,7 @@
 
   <!-- Link to JavaScript file -->
   <script src="scripts/main.js"></script>
-  <script src="scripts/carousel.js"></script>
+  <!-- <script src="scripts/carousel.js"></script> -->
 
 </body>
 </html>
