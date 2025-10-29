@@ -81,7 +81,7 @@ input[type=number]{width:80px;background:#0b1220;color:var(--text);border:1px so
 .hidden {
   display: block;           /* keep layout flow predictable */
   opacity: 0;
-  pointer-events: none;
+  /* pointer-events: none; */
   transform: translateY(8px);
 }
 
@@ -141,7 +141,7 @@ input[type=number]{width:80px;background:#0b1220;color:var(--text);border:1px so
 /* 4) Hide state that doesn't break layout or interactions */
 .hidden {
   visibility: hidden;     /* not visible */
-  pointer-events: none;   /* not clickable */
+  /* pointer-events: none;    */
   opacity: 0;             /* if you later add transitions */
 }
 
@@ -315,3 +315,77 @@ nav a:hover {
   color: var(--accent, #9b5cff);
   line-height: 1.4; */
 }
+
+
+
+
+/* Layout & centering */
+.center-wrap {
+  display:flex; justify-content:center; align-items:center;
+}
+.eq-row {
+  display:grid; grid-template-columns:auto auto minmax(320px, 520px);
+  gap:12px; align-items:start; place-items:center;
+}
+
+.eigenbasis {
+  border:1px solid var(--border, #334155);
+  border-radius:12px; padding:24px;
+  background:var(--surface,#0b1220);
+  max-width:1200px; margin:0 auto; margin-top: -28px;
+  z-index: 100; pointer-events: auto;
+}
+.muted { color:rgba(255,255,255,.7); }
+
+/* Equation typography */
+.lhs, .rhs, .eq {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+.lhs { display:flex; align-items:center; gap:8px; }
+.eq { padding:0 8px; color:rgba(255,255,255,.7); font-size:18px; }
+.math { font-size:18px; }
+.sym { font-weight:600; letter-spacing:.5px; }
+.sub { font-size:.8em; vertical-align:sub; margin-left:1px; }
+
+/* Inline dropdown on v */
+.vec-dropdown {  position: relative; z-index: 1000; isolation: isolate; } /* ensure clickable above neighbors */
+.vec-trigger {
+  display:flex; align-items:center; gap:8px;
+  padding:2px 8px; border:1px solid rgba(255,255,255,.15);
+  border-radius:8px; background:rgba(255,255,255,.06); color:inherit;
+  cursor:pointer; transition:background .15s ease, border-color .15s ease, transform .15s ease;
+  line-height:1.2;
+}
+.vec-trigger:hover { background:rgba(255,255,255,.10); transform:translateY(-1px); }
+.vec-trigger-icon i, .vec-caret i { width:16px; height:16px; }
+.vec-trigger-label { font-size:16px; }
+
+.vec-menu {
+  position:absolute; top:calc(100% + 6px); left:0; right:auto;
+  display:none; list-style:none; margin:0; padding:6px;
+  background:rgba(6,10,18,.98); backdrop-filter:saturate(1.2) blur(6px);
+  border:1px solid rgba(255,255,255,.12); border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  max-height:280px; overflow:auto; min-width:220px; z-index:999;  /* clickable */
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+.vec-dropdown[data-open="true"] .vec-menu { display:block; }
+.vec-menu li {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 10px; border-radius:8px; cursor:pointer;
+  transition:background .12s ease, color .12s ease;
+}
+.vec-menu li:hover, .vec-menu li[aria-selected="true"] { background:rgba(255,255,255,.08); }
+.vec-menu li i { width:18px; height:18px; }
+
+/* RHS list styling */
+.sum { display:flex; flex-direction:column; gap:8px; width:100%; }
+.term {
+  display:grid; grid-template-columns:auto 1fr; gap:8px; align-items:center;
+  background:rgba(255,255,255,.03); padding:8px; border-radius:10px; border:1px solid rgba(255,255,255,.1);
+  width:100%;
+}
+.lambda { white-space:nowrap; opacity:.85; }
+.val { display:flex; flex-direction:column; gap:4px; }
+.bar { height:6px; border-radius:999px; background:linear-gradient(90deg, var(--accent,#6ee7b7), transparent); opacity:.85; }

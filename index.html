@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Website</title>
+  <title>Magnus Dierking</title>
 
   <!-- Link to external stylesheet -->
   <link rel="stylesheet" href="style/style.css" />
@@ -86,24 +86,64 @@
       <section id="about" class="about">
         <h2 class="fade-item">About</h2>
         <div class="grid-card">
-          <p>Hi, I'm <span class="highlight">Magnus</span>.<br> 
-            I am working to bring together robotics and modern AI, combining perception, control, and planning with <span class="highlight">Generative Models</span>, <span class="highlight">Reinforcement Learning</span> and <span class="highlight">Foundation Models</span>.
-            
-            While these approaches have revolutionized how we represent and interact with information through text, images, and video, I believe that making robots truly intelligent requires a deeper grounding in first principles.
-
+          <p>Hey there, I'm <span class="highlight">Magnus</span>.<br> 
+            I am working to bring together robotics and modern AI, combining perception, control, and planning with the likes of <span class="highlight">Generative Models</span>, <span class="highlight">Reinforcement Learning</span> and <span class="highlight">Foundation Models</span>.
+            <br><br>
+            While Transformers, Diffusion Models and co. have revolutionized how we represent and interact with information through text, images, and videos, I believe that making robots truly intelligent requires a deeper grounding in first principles.
+            <br><br>
             This grounding, I think, must come through inductive biases — mathematical structures that capture the patterns and regularities of our world, allowing learning systems to exploit them more effectively.
             For me, the most promising frameworks to achieve this lie in the realms of <span class="highlight">Information Theory</span>, <span class="highlight">Optimization</span> and <span class="highlight">Lie Theory</span>, 
-            the languages of uncertainty and decision making, efficiency and structure and symmetry.<br><br>
+            the languages of uncertainty, efficiency, and structure and symmetry.<br><br>
 
-            While I am slowly but surely gradient descending into the local minimum many refer to as madness, I’m also an avid reader, traveler, and gym rat.
+            Outside of research, where I am slowly but surely gradient descending into the local minimum many refer to as madness, I’m also an avid reader, traveler, and gym rat.
           </p>
         </div>
       </section>
 
+      <!-- TTest -->
+      <section id="eigenbasis" class="eigenbasis">
+        <h3 class="muted" style="margin-bottom:8px; text-align:center">Personal Eigenbasis</h3>
+        <p class="muted" style="margin-bottom:16px; text-align:center">Pick a vector (category) to see which eigenvectors contribute (favorites):</p>
+
+        <div class="center-wrap">
+          <!-- Equation row (centered) -->
+          <div class="eq-row">
+            <div class="lhs">
+              <span class="math sym">M<span class="sub">e</span></span>
+              <span class="math">·</span>
+
+              <!-- INLINE DROPDOWN ON v -->
+              <div class="vec-dropdown" data-open="false">
+                <button class="vec-trigger" id="vec-trigger" aria-haspopup="listbox" aria-expanded="false" title="Choose eigenvector">
+                  <span class="vec-trigger-icon"><i data-lucide="sparkles"></i></span>
+                  <span class="vec-trigger-label" id="v-label">v</span>
+                  <span class="vec-caret"><i data-lucide="chevron-down"></i></span>
+                </button>
+                <ul class="vec-menu" id="vec-menu" role="listbox" aria-labelledby="vec-trigger" tabindex="-1">
+                  <li role="option" data-key="books"     data-icon="book-open"><i data-lucide="book-open"></i><span>v₁ Books</span></li>
+                  <li role="option" data-key="travel"    data-icon="globe"><i data-lucide="globe"></i><span>v₂ Travel</span></li>
+                  <li role="option" data-key="research"  data-icon="brain-circuit"><i data-lucide="brain-circuit"></i><span>v₃ Research</span></li>
+                  <li role="option" data-key="tools"     data-icon="wrench"><i data-lucide="wrench"></i><span>v₄ Tools</span></li>
+                  <li role="option" data-key="constants" data-icon="cup-soda"><i data-lucide="cup-soda"></i><span>v₅ Constants</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="eq">=</div>
+
+            <div class="rhs" id="rhs">
+              <span class="muted">Select a vector ←</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- TTest -->
+      <br><br>
+
       <section id="news" class="news">
         <h2 class="fade-item">News</h2>
         <div class="grid-card">
-          <p>ToDo (Card Carousel ?)</p>
+          <p>Coming Soon ...</p>
         </div>
       </section>
       <!-- <div id="newsCarousel" class="carousel" aria-label="News carousel" tabindex="1"></div> -->
@@ -134,7 +174,7 @@
             <span class="badge">Preprint</span> arXiv, 2025
           </div>
           <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="https://example.com" target="_blank" rel="noopener" class="muted">
+          <a href="https://robotics-ark.github.io/ark_robotics.github.io/" target="_blank" rel="noopener" class="muted">
             View Paper
           </a>
         </div>
@@ -146,8 +186,8 @@
             <span class="badge">Journal</span>  IEEE RA-L, 2025
           </div>
           <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="https://example.com" target="_blank" rel="noopener" class="muted">
-            View Paper
+          <a  target="_blank" rel="noopener" class="muted">
+            (Coming Soon)
           </a>
         </div>
 
@@ -172,7 +212,7 @@
             <span class="badge">Master Thesis</span>
           </div>
           <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="files/Intelligent_Robotic_Manipulation_Final_Project.pdf" target="_blank" rel="noopener" class="muted">View PDF</a>
+          <a target="_blank" rel="noopener" class="muted">(Coming Soon)</a>
         </div>
 
         <div class="grid-card zoom">
@@ -249,14 +289,14 @@
           <p class="muted">After my Bachelor’s thesis, I began building a personal knowledge base using <span class="highlight">Obsidian</span> — a habit that has grown with me through my Master’s, internship, and side projects. 
                            Over time, it has evolved into a repository of thoughts, ideas, and notes spanning computer science, robotics, mathematics, and everything in between.
                           <br><br>
-                          a) These notes are, and will always be, a work in progress — an ongoing effort to build my own Hitchhiker’s Guide to my field, minus the budget and the towel.
-                          <br><br>
-                          b) These notes are, and will always be, a work in progress — small attempts at understanding a universe that clearly didn’t come with documentation.
-                          <br><br>
-                          They’re less a collection of answers than a record of me trying to figure things out. Because of that, their quality ranges from near-empty stubs and quick sketches to half-formed ideas and nearly blog-ready articles.
+                          These notes are, and will always be, a work in progress — small attempts at understanding a universe that clearly didn’t come with documentation.
+                          They’re less a collection of answers than a record of me trying to figure things out. Because of that, their quality ranges from near-empty stubs and quick sketches through half-formed ideas to blog-ready articles.
                           <br><br>
                           I also use several custom callouts and plugins that aren’t preserved when exporting, so some interface elements may look a little off.
           </p>
+          <div style="display:flex;justify-content:center;margin-top:32px;">
+            <a href="https://your-link-here.com" target="_blank" class="btn">Continue to Notes  →</a>
+          </div>
         </div>
       </div>
     </div>

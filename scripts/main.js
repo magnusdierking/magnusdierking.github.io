@@ -38,17 +38,6 @@ const BADGE = {home: '/home', projects: '/home/projects', notes: '/home/notes'};
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function startTransition(next) {
   if (mode === next) return;
   prevMode = mode;
@@ -57,10 +46,10 @@ function startTransition(next) {
 }
 
 
-projectsBtn?.addEventListener('click', () => switchView('projects'));
-notesBtn?.addEventListener('click', () => switchView('notes'));
-backBtn?.addEventListener('click', () => switchView('home'));
-backBtn2?.addEventListener('click', () => switchView('home'));
+// projectsBtn?.addEventListener('click', () => switchView('projects'));
+// notesBtn?.addEventListener('click', () => switchView('notes'));
+// backBtn?.addEventListener('click', () => switchView('home'));
+// backBtn2?.addEventListener('click', () => switchView('home'));
 
 
 
@@ -487,3 +476,158 @@ lucide.createIcons();
 
 
 
+
+
+
+// Load Lucide only if needed
+(function ensureLucide(cb){
+  if (window.lucide && lucide.createIcons) return cb();
+  var s=document.createElement('script'); s.src='https://unpkg.com/lucide@latest/dist/umd/lucide.min.js';
+  s.onload=cb; document.head.appendChild(s);
+})(function(){ lucide.createIcons(); });
+
+// Data
+const DATA = {
+  books: [
+    { name: "The Hitchhiker's Guide Trilogy of Five", mag: 0.99 },
+    { name: "Thinking Fast and Slow", mag: 0.9 },
+    { name: "Ansichten der Natur", mag: 0.5 },
+    { name: "The Power of Geography", mag: 0.6 },
+    { name: "Before the Coffee gets Cold", mag: 0.7 }
+  ],
+  travel: [
+    { name: "La Paz, Bolivia", mag: 0.8 },
+    { name: "Tbilisi, Georgia", mag: 0.8 },
+    { name: "Vienna, Austria", mag: 0.9 },
+    { name: "Shenzhen, China", mag: 0.6 },
+    { name: "Galle, Sri Lanka", mag: 0.7 }
+  ],
+  research: [
+    { name: "Geometric Learning", mag: 0.92 },
+    { name: "(Sampling-based) MPC", mag: 0.88 },
+    { name: "Embodied AI", mag: 0.83 }
+  ],
+  tools: [
+    { name: "Python (Torch, JAX, ...)", mag: 0.9 },
+    { name: "C++", mag: 0.6 },
+    { name: "Obsidian", mag: 0.99 },
+    { name: "VS Code", mag: 0.8 },
+    { name: "Figma", mag: 0.3 }
+  ],
+  constants: [
+    { name: "Flat White", mag: 0.99 },
+    { name: "Gym", mag: 0.8 },
+    { name: "NFL", mag: 0.72 }
+  ]
+};
+
+const vPretty = {
+  books: "v₁ (Books)",
+  travel: "v₂ (Travel)",
+  research: "v₃ (Research)",
+  tools: "v₄ (Tools)",
+  constants: "v₅ (Constants)"
+};
+
+// Elements
+const dropdown  = document.querySelector(".vec-dropdown");
+const trigger   = document.getElementById("vec-trigger");
+const menu      = document.getElementById("vec-menu");
+const rhs       = document.getElementById("rhs");
+const vLabel    = document.getElementById("v-label");
+
+function renderRHS(key) {
+  const items = DATA[key] || [];
+  if (!items.length) { rhs.innerHTML = `<span class="muted">No eigenvalues found.</span>`; return; }
+  rhs.innerHTML = `
+    <div class="sum">
+      ${items.map((it, idx) => `
+        <div class="term">
+          <div class="lambda">λ<sub>${idx+1}</sub></div>
+          <div class="val">
+            <div>${it.name}</div>
+            <div class="bar" style="width:${Math.round(100*it.mag)}%"></div>
+          </div>
+        </div>
+      `).join("")}
+    </div>`;
+}
+
+function openMenu(open) {
+  dropdown.dataset.open = String(open);
+  trigger.setAttribute("aria-expanded", String(open));
+  if (open) {
+    menu.style.pointerEvents = "auto";
+    menu.focus({preventScroll:true});
+  } else {
+    menu.style.pointerEvents = "none";
+  }
+}
+
+function selectItem(li) {
+  if (!li) return;
+  // Read stable attributes from the LI itself
+  const key = li.dataset.key;
+  const iconName = li.dataset.icon || "sparkles";
+  const label = (li.querySelector("span")?.textContent || key).trim();
+
+  // Visual state in the menu
+  menu.querySelectorAll("li[role='option']").forEach(x => x.removeAttribute("aria-selected"));
+  li.setAttribute("aria-selected","true");
+
+  // Update trigger (icon + label)
+  trigger.querySelector(".vec-trigger-icon").innerHTML = `<i data-lucide="${iconName}"></i>`;
+  trigger.querySelector(".vec-trigger-label").textContent = label;
+
+  // Re-render icons after DOM change
+  if (window.lucide && lucide.createIcons) { lucide.createIcons(); }
+
+  // Update equation RHS
+  vLabel.textContent = vPretty[key] || "v";
+  renderRHS(key);
+
+  // Close menu
+  openMenu(false);
+}
+
+// Events
+trigger.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const open = dropdown.dataset.open === "true";
+  openMenu(!open);
+});
+
+menu.addEventListener("click", (e) => {
+  const li = e.target.closest("li[role='option']");
+  if (li) selectItem(li);
+});
+
+// Close on outside click
+document.addEventListener("click", (e) => {
+  if (!dropdown.contains(e.target)) openMenu(false);
+});
+
+// Keyboard navigation
+menu.addEventListener("keydown", (e) => {
+  const items = Array.from(menu.querySelectorAll("li"));
+  const idx = items.findIndex(x => x.getAttribute("aria-selected")==="true");
+  if (e.key === "Escape") { openMenu(false); trigger.focus(); }
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    const next = items[Math.max(0, Math.min(items.length-1, (idx<0?0:idx+1)))];
+    items.forEach(x=>x.removeAttribute("aria-selected")); next.setAttribute("aria-selected","true"); next.scrollIntoView({block:"nearest"});
+  }
+  if (e.key === "ArrowUp") {
+    e.preventDefault();
+    const prev = items[Math.max(0, (idx<0?0:idx-1))];
+    items.forEach(x=>x.removeAttribute("aria-selected")); prev.setAttribute("aria-selected","true"); prev.scrollIntoView({block:"nearest"});
+  }
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    const current = items.find(x => x.getAttribute("aria-selected")==="true") || items[0];
+    if (current) selectItem(current);
+  }
+});
+
+// Ensure icons render after DOM changes
+document.addEventListener("DOMContentLoaded", () => { if (window.lucide) lucide.createIcons(); });
