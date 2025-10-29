@@ -48,11 +48,16 @@ a.btn.outline{background:transparent;color:var(--text);border-color:#1f2a44}
 .muted{color:var(--muted)}
 footer{margin:32px 0;color:#94a3b8;font-size:12px;display:flex;justify-content:space-between}
 .row{display:flex;gap:8px;align-items:center;margin:6px 0}
-input[type=number]{width:80px;background:#0b1220;color:var(--text);border:1px solid #334155;border-radius:10px;padding:6px 8px}
+input[type=number]{width:80px;
+                   background:#0b1220;
+                   color:var(--muted);
+                   border:1px solid #334155;
+                   border-radius:10px;
+                   padding:6px 8px}
 
 .badge{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; 
        font-size:12px; 
-       color:#cbd5e1; 
+       color:var(--muted); 
        background:#0b1220; 
        border:1px solid #334155; 
        border-radius:10px; 
@@ -329,26 +334,26 @@ nav a:hover {
 }
 
 .eigenbasis {
-  border:1px solid var(--border, #334155);
+  /* border:1px solid var(--border, #334155); */
   border-radius:12px; padding:24px;
-  background:var(--surface,#0b1220);
-  max-width:1200px; margin:0 auto; margin-top: -28px;
-  z-index: 100; pointer-events: auto;
+  /* background:var(--surface,#0b1220); */
+  max-width:1200px; margin:0 auto; margin-top: 0px;
+  z-index: 100; pointer-events: auto; 
 }
-.muted { color:rgba(255,255,255,.7); }
+.muted { color: var(--muted); ; }
 
 /* Equation typography */
 .lhs, .rhs, .eq {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; color:var(--muted); 
 }
-.lhs { display:flex; align-items:center; gap:8px; }
-.eq { padding:0 8px; color:rgba(255,255,255,.7); font-size:18px; }
+.lhs { display:flex; align-items:center; gap:8px; color:var(--muted); }
+.eq { padding:0 8px; color:var(--muted); font-size:18px; }
 .math { font-size:18px; }
 .sym { font-weight:600; letter-spacing:.5px; }
 .sub { font-size:.8em; vertical-align:sub; margin-left:1px; }
 
 /* Inline dropdown on v */
-.vec-dropdown {  position: relative; z-index: 1000; isolation: isolate; } /* ensure clickable above neighbors */
+.vec-dropdown {  position: relative; z-index: 1000; isolation: isolate; color:var(--muted); } /* ensure clickable above neighbors */
 .vec-trigger {
   display:flex; align-items:center; gap:8px;
   padding:2px 8px; border:1px solid rgba(255,255,255,.15);

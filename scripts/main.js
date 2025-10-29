@@ -499,25 +499,29 @@ const DATA = {
     { name: "La Paz, Bolivia", mag: 0.8 },
     { name: "Tbilisi, Georgia", mag: 0.8 },
     { name: "Vienna, Austria", mag: 0.9 },
-    { name: "Shenzhen, China", mag: 0.6 },
-    { name: "Galle, Sri Lanka", mag: 0.7 }
+    { name: "Cusco, Peru", mag: 0.8 },
+    { name: "Galle, Sri Lanka", mag: 0.7 },
+    { name: "Shenzhen, China", mag: 0.6 }
   ],
   research: [
-    { name: "Geometric Learning", mag: 0.92 },
+    { name: "Robotics Software", mag: 0.99 },
     { name: "(Sampling-based) MPC", mag: 0.88 },
-    { name: "Embodied AI", mag: 0.83 }
+    { name: "Optimal Transport", mag: 0.6 },
+    { name: "Geometric Deep Learning", mag: 0.7 },
   ],
   tools: [
-    { name: "Python (Torch, JAX, ...)", mag: 0.9 },
-    { name: "C++", mag: 0.6 },
+    { name: "Linux (Ubuntu, Arch)", mag: 0.95 },
+    { name: "Python, C++", mag: 0.85 },
+    { name: "VS Code", mag: 0.75 },
     { name: "Obsidian", mag: 0.99 },
-    { name: "VS Code", mag: 0.8 },
-    { name: "Figma", mag: 0.3 }
+    { name: "Figma, DrawIO, LaTeX", mag: 0.3 }
   ],
   constants: [
-    { name: "Flat White", mag: 0.99 },
-    { name: "Gym", mag: 0.8 },
-    { name: "NFL", mag: 0.72 }
+    { name: "Family & Friends", mag: 1.0 },
+    { name: "Flat White", mag: 0.8 },
+    { name: "Gym", mag: 0.9 },
+    { name: "NFL (Houston Texans)", mag: 0.8 },
+    { name: "Kimchi", mag: 0.5 }
   ]
 };
 
@@ -525,7 +529,7 @@ const vPretty = {
   books: "v₁ (Books)",
   travel: "v₂ (Travel)",
   research: "v₃ (Research)",
-  tools: "v₄ (Tools)",
+  tools: "v₄ (Software)",
   constants: "v₅ (Constants)"
 };
 
