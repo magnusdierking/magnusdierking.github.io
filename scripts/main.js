@@ -317,7 +317,7 @@ function render(){
     return;
   }
   // pixels to cut off from each side (customize these)
-  const crop = { left: 0, right: 0, top: 150, bottom: 0};
+  const crop = { left: 0, right: 0, top: 180, bottom: 0};
 
   // safe source rect (image space)
   const sx = Math.max(0, crop.left);
@@ -327,7 +327,7 @@ function render(){
   // center + scale-to-fit BEFORE transform, then apply A and translation v
   const ox = W/2, oy = H/2;
   const unit = Math.min(W, H) / 8;        // "grid unit" so v behaves like before
-  const zoom = Math.min((W*1.15)/img.width, (H*1.15)/img.height); // fit nicely
+  const zoom = Math.min((W*1.2)/img.width, (H*1.2)/img.height); // fit nicely
   
   const dw = sWidth  * zoom;
   const dh = sHeight * zoom;
@@ -520,10 +520,15 @@ const DATA = {
     { name: "Shenzhen, China", mag: 0.6 }
   ],
   research: [
-    { name: "Robotics Software", mag: 0.99 },
-    { name: "(Sampling-based) MPC", mag: 0.88 },
-    { name: "Optimal Transport", mag: 0.6 },
-    { name: "Geometric Deep Learning", mag: 0.7 },
+    { name: "Robotics Software", mag: 1.0 },
+    { name: "(Sampling-based) MPC", mag: 1.0 },
+    { name: "Optimal Transport", mag: 1.0 },
+    { name: "Geometric Deep Learning", mag: 1.0 },
+  ],
+  quotes: [
+    { name: "A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.", mag: 1.0 },
+    { name: "An expert is a person who has made all the mistakes that can be made in a very narrow field.", mag: 0.9 },
+    { name: "For every complex problem there is an answer that is clear, simple, and wrong.", mag: 0.7 },
   ],
   tools: [
     { name: "Linux (Ubuntu, Arch)", mag: 0.95 },
@@ -537,14 +542,14 @@ const DATA = {
     { name: "Flat White", mag: 0.8 },
     { name: "Gym", mag: 0.9 },
     { name: "NFL (Houston Texans)", mag: 0.8 },
-    { name: "Kimchi", mag: 0.5 }
+    { name: "Korean Food", mag: 0.5 }
   ]
 };
 
 const vPretty = {
   books: "v₁ (Books)",
   travel: "v₂ (Travel)",
-  research: "v₃ (Research)",
+  research: "v₃ (Quotes)",
   tools: "v₄ (Software)",
   constants: "v₅ (Constants)"
 };
