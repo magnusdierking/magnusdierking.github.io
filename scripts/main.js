@@ -549,7 +549,7 @@ const DATA = {
 const vPretty = {
   books: "v₁ (Books)",
   travel: "v₂ (Travel)",
-  research: "v₃ (Quotes)",
+  quotes: "v₃ (Quotes)",
   tools: "v₄ (Software)",
   constants: "v₅ (Constants)"
 };
@@ -656,3 +656,4 @@ menu.addEventListener("keydown", (e) => {
 
 // Ensure icons render after DOM changes
 document.addEventListener("DOMContentLoaded", () => { if (window.lucide) lucide.createIcons(); });
+

@@ -23,7 +23,7 @@ body{margin:0;
 .wrap{position: relative; 
       max-width:980px;
       margin:0 auto;
-      padding:24px}
+      padding:28px}
 
 
 header, section{position:relative}
@@ -38,13 +38,14 @@ a.btn.outline{background:transparent;color:var(--text);border-color:#1f2a44}
 .grid-card{background:rgba(15,23,42,.6);
            border:1px solid #334155;
            border-radius:16px;
+           
            padding:16px}
 .cols{display:grid;
       grid-template-columns:1fr;
       gap:16px}
 @media(min-width:500px){.cols{grid-template-columns:1.15fr .85fr}}
 .numbers{position:absolute;inset:0;z-index:0}
-.hero,.about,.projects,.contact{margin-top:18px;padding-top:18px}
+.hero,.about,.contact{margin-top:18px;padding-top:18px}
 .muted{color:var(--muted)}
 footer{margin:32px 0;color:#94a3b8;font-size:12px;display:flex;justify-content:space-between}
 .row{display:flex;
@@ -71,11 +72,8 @@ input[type=fix]{width:80px;
        border-radius:10px; 
        padding:2px 8px}
 
-.cards{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:700px){.cards{grid-template-columns:1fr 1fr}}
 
 
-.hidden { display: none; }
 
 .fade-in, .fade-out { animation: none; }  /* override old animations */
 
@@ -92,10 +90,12 @@ input[type=fix]{width:80px;
 }
 
 .hidden {
-  display: block;           /* keep layout flow predictable */
-  opacity: 0;
+
   /* pointer-events: none; */
   transform: translateY(8px);
+  visibility: hidden;     /* not visible */
+  /* pointer-events: none;    */
+  opacity: 0;             /* if you later add transitions */
 }
 
 .fade-out {
@@ -130,11 +130,15 @@ input[type=fix]{width:80px;
   inset: 0;          /* top:0; right:0; bottom:0; left:0 */
   z-index: 9;        /* below header (10), above background */
   overflow: auto;    /* scroll if content is tall */
+  padding-top: 50px; /* push content below the sticky header height */
   top: 40px;      /* push content below the sticky header height */
   background: transparent; /* or var(--bg) if you want an opaque layer */
   max-width:980px;
   margin:0 auto;
   padding:24px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-top: var(--header-h);
 }
 
 #notes {
@@ -149,21 +153,21 @@ input[type=fix]{width:80px;
   max-width:980px;
   margin:0 auto;
   padding:24px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-top: var(--header-h);
 }
 
-/* 4) Hide state that doesn't break layout or interactions */
-.hidden {
-  visibility: hidden;     /* not visible */
-  /* pointer-events: none;    */
-  opacity: 0;             /* if you later add transitions */
-}
 
 /* Grid cards style */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px; /* increase space between cards */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 
 /* --- Smaller Effects --- */
