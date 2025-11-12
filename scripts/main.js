@@ -38,19 +38,16 @@ const BADGE = {home: '/home', projects: '/home/projects', notes: '/home/notes'};
 
 
 
+// -------------------------------------------------------------
+// --- Background
+// -------------------------------------------------------------
+
 function startTransition(next) {
   if (mode === next) return;
   prevMode = mode;
   mode = next;
   progress = 0; // begin interpolation
 }
-
-
-// projectsBtn?.addEventListener('click', () => switchView('projects'));
-// notesBtn?.addEventListener('click', () => switchView('notes'));
-// backBtn?.addEventListener('click', () => switchView('home'));
-// backBtn2?.addEventListener('click', () => switchView('home'));
-
 
 
 // Smoothly animate curvature
@@ -262,22 +259,20 @@ function drawBG() {
   bgCtx.fillStyle = grd;
   bgCtx.fillRect(0, 0, width, height);
 
-  // request next frame for continuous motion
-  // requestAnimationFrame(drawBG);
 }
-
-
-// keep your existing resize handler; just call drawBG once to reflow
 window.addEventListener('resize', () => drawBG());
-
 // kick things off
 requestAnimationFrame(tick);
-
-
 function resizeBG(){bg.style.width='100%';bg.style.height='100%';drawBG();}
 
 
+
+
+
+
+// -------------------------------------------------------------
 // ----- 2D Transform Demo -----
+// -------------------------------------------------------------
 const img = new Image();
 let imgReady = false;
 img.src = "media/me.jpg"; // change path to your image
@@ -356,14 +351,18 @@ function render(){
   ctx.strokeRect(0.5, 0.5, W-1, H-1);
 }
 
-
-
-
 function n(id){return parseFloat(document.getElementById(id).value)}
 ['a11','a12','a21','a22','vx','vy'].forEach(id=>document.getElementById(id).addEventListener('input', render));
 const y = document.getElementById('year'); y.textContent = new Date().getFullYear();
 function fitCanvases(){const w=Math.max(document.documentElement.clientWidth, window.innerWidth||0);const h=Math.max(document.documentElement.clientHeight, window.innerHeight||0);bg.style.width=w+'px';bg.style.height=h+'px';drawBG();render();}
 window.addEventListener('resize', fitCanvases); fitCanvases();
+
+
+
+// -------------------------------------------------------------
+// ----- View Switching Logic -----
+// -------------------------------------------------------------
+
 
 (function () {
   const bgEl = document.getElementById('bg');
@@ -380,9 +379,9 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
 
   let current = (location.hash.replace('#', '') || 'home');
   if (!['home','projects','notes'].includes(current)) current = 'home';
-  mode = current;       // <- add this
-  prevMode = current;   // <- add this
-  progress = 1;         // <- add this (already “arrived”)
+  mode = current;       
+  prevMode = current;   
+  progress = 1;         
   setCurvature(CURVATURE_BY_VIEW[current] ?? 0, 0);
 
   function setBg(view) {
@@ -493,9 +492,10 @@ lucide.createIcons();
 
 
 
+// -------------------------------------------------------------
+// --- Eigenvector Dropdown ---
+// -------------------------------------------------------------
 
-
-// Load Lucide only if needed
 (function ensureLucide(cb){
   if (window.lucide && lucide.createIcons) return cb();
   var s=document.createElement('script'); s.src='https://unpkg.com/lucide@latest/dist/umd/lucide.min.js';
