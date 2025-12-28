@@ -20,7 +20,8 @@ body{margin:0;
      background:var(--bg); 
      color:var(--text)}
 
-.wrap{position: relative; 
+.wrap{position: relative;
+      min-width: 460px;
       max-width:980px;
       margin:0 auto;
       padding:28px}
@@ -54,11 +55,11 @@ a.btn.outline{background:transparent;
       grid-template-columns:1fr;
       gap:16px}
 
-@media(min-width:850px){
+@media(min-width:450px){
   .cols{grid-template-columns:1.15fr .85fr}
   .eq-row {
     display: grid;
-    grid-template-columns: auto auto minmax(320px, 520px);
+    grid-template-columns: auto auto auto;
     align-items: start;
     justify-content: center;
   }
@@ -363,8 +364,8 @@ nav a:hover {
 .lhs, .rhs, .eq {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; color:var(--muted); 
 }
-.lhs { display:flex; align-items:center; gap:8px; color:var(--muted); }
-.eq { padding:0 8px; color:var(--muted); font-size:18px; }
+.lhs { display:flex; align-items:center; gap:4px; color:var(--muted); }
+.eq { padding:0 2px; color:var(--muted); font-size:18px; }
 .math { font-size:18px; }
 .sym { font-weight:600; letter-spacing:.5px; }
 .sub { font-size:.8em; vertical-align:sub; margin-left:1px; }
@@ -388,18 +389,18 @@ nav a:hover {
   background:rgba(6,10,18,.98); backdrop-filter:saturate(1.2) blur(6px);
   border:1px solid rgba(255,255,255,.12); border-radius:10px;
   box-shadow:0 10px 30px rgba(0,0,0,.35);
-  max-height:280px; overflow:auto; min-width:220px; z-index:999;  /* clickable */
+  max-height:280px; overflow:auto; min-width:120px; z-index:999;  /* clickable */
   z-index: 9999 !important;
   pointer-events: auto !important;
 }
 .vec-dropdown[data-open="true"] .vec-menu { display:block; }
 .vec-menu li {
-  display:flex; align-items:center; gap:10px;
-  padding:8px 10px; border-radius:8px; cursor:pointer;
+  display:flex; align-items:center; gap:2px;
+  padding:2px 4px; border-radius:8px; cursor:pointer;
   transition:background .12s ease, color .12s ease;
 }
 .vec-menu li:hover, .vec-menu li[aria-selected="true"] { background:rgba(255,255,255,.08); }
-.vec-menu li i { width:18px; height:18px; }
+.vec-menu li i { width:12px; height:12px; }
 
 /* RHS list styling */
 .sum { display:flex; flex-direction:column; gap:8px; width:100%; }
