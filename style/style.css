@@ -53,7 +53,17 @@ a.btn.outline{background:transparent;
 .cols{display:grid;
       grid-template-columns:1fr;
       gap:16px}
-@media(min-width:500px){.cols{grid-template-columns:1.15fr .85fr}}
+
+@media(min-width:850px){
+  .cols{grid-template-columns:1.15fr .85fr}
+  .eq-row {
+    display: grid;
+    grid-template-columns: auto auto minmax(320px, 520px);
+    align-items: start;
+    justify-content: center;
+  }
+}
+
 .numbers{position:absolute;inset:0;z-index:0}
 .hero,.about,.contact{margin-top:18px;padding-top:18px}
 .muted{color:var(--muted)}
@@ -134,7 +144,7 @@ input[type=fix]{width:80px;
 }
 
 /* 3) Make the Projects view an overlay that fills the viewport */
-#projects {
+#projects, #notes {
   padding-inline: var(--page-pad);
   position: fixed;   /* take it out of normal flow → no gap where it's declared */
   inset: 0;          /* top:0; right:0; bottom:0; left:0 */
@@ -150,24 +160,6 @@ input[type=fix]{width:80px;
   -webkit-overflow-scrolling: touch;
   scroll-padding-top: var(--header-h);
 }
-
-#notes {
-  padding-inline: var(--page-pad);
-  position: fixed;   /* take it out of normal flow → no gap where it's declared */
-  inset: 0;          /* top:0; right:0; bottom:0; left:0 */
-  z-index: 9;        /* below header (10), above background */
-  overflow: auto;    /* scroll if content is tall */
-  padding-top: 50px; /* push content below the sticky header height */
-  background: transparent; /* or var(--bg) if you want an opaque layer */
-  top: 40px;      /* push content below the sticky header height */
-  max-width:980px;
-  margin:0 auto;
-  padding:24px;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  scroll-padding-top: var(--header-h);
-}
-
 
 /* Grid cards style */
 .cards {
@@ -351,8 +343,11 @@ nav a:hover {
   display:flex; justify-content:center; align-items:center;
 }
 .eq-row {
-  display:grid; grid-template-columns:auto auto minmax(320px, 520px);
-  gap:12px; align-items:start; place-items:center;
+  display:grid; 
+  grid-template-columns:auto auto auto;
+  gap:12px; 
+  align-items:start; 
+  place-items:center;
 }
 
 .eigenbasis {

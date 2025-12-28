@@ -369,7 +369,7 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
 
   // Collect views
   const views = {
-    home: document.getElementById('homeView'),
+    home: document.getElementById('home'),
     projects: document.getElementById('projects'),
     notes: document.getElementById('notes')
   };
@@ -395,7 +395,7 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
     }
 
   // View Switching Logic  
-  async function switchView(next) {
+  async function switchView(next, pushHistory = true) {
     const views = { home: homeEl, projects: projectsEl, notes: notesEl };
     if (!views[next]) next = 'home';
     if (next === (mode || 'home')) return;
@@ -437,8 +437,10 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
     await new Promise(r => requestAnimationFrame(()=>requestAnimationFrame(r)));
     await new Promise(r => setTimeout(r, FADE_IN_MS));
     nextEl.classList.remove('fade-in');
-
-    history.pushState({ view: next }, '', next === 'home' ? '#home' : `#${next}`);
+    // only push history if user initiated
+    if (pushHistory) {
+      history.pushState({ view: next }, '', next === 'home' ? '#home' : `#${next}`);
+    }
   }
 
   // Hook header nav: #projects and #notes go to their views; others stay on home and scroll
@@ -469,10 +471,13 @@ window.addEventListener('resize', fitCanvases); fitCanvases();
     btn.addEventListener('click', () => switchView('home'));
   });
 
-  // Handle browser navigation
+  // browser navigation stuff (back, forward)
   window.addEventListener('popstate', (e) => {
+    // Fallback to hash if state is null (happens on some initial loads)
     const target = e.state?.view || (location.hash.replace('#', '') || 'home');
-    if (views[target]) switchView(target);
+    
+    // Pass 'false' so we don't push this state again
+    if (views[target]) switchView(target, false); 
   });
 
   // First paint
