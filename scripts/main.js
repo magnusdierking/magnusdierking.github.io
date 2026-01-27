@@ -534,6 +534,7 @@ const DATA = {
     { name: "A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.", mag: 1.0 },
     { name: "An expert is a person who has made all the mistakes that can be made in a very narrow field.", mag: 0.9 },
     { name: "For every complex problem there is an answer that is clear, simple, and wrong.", mag: 0.7 },
+    { name: "Nothing is more permanent than a temporary solution.", mag: 0.7 },
   ],
   tools: [
     { name: "Linux (Ubuntu, Arch)", mag: 0.95 },
