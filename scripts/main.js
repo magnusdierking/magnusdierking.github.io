@@ -513,35 +513,29 @@ const DATA = {
     { name: "The Hitchhiker's Guide Trilogy of Five", mag: 0.99 },
     { name: "Thinking Fast and Slow", mag: 0.9 },
     { name: "Ansichten der Natur", mag: 0.5 },
-    { name: "The Power of Geography", mag: 0.6 },
+    { name: "Six (Not So) Easy Pieces", mag: 0.6 },
     { name: "Before the Coffee gets Cold", mag: 0.7 }
   ],
   travel: [
-    { name: "La Paz, Bolivia", mag: 0.8 },
-    { name: "Tbilisi, Georgia", mag: 0.8 },
-    { name: "Vienna, Austria", mag: 0.9 },
-    { name: "Cusco, Peru", mag: 0.8 },
-    { name: "Galle, Sri Lanka", mag: 0.7 },
-    { name: "Shenzhen, China", mag: 0.6 }
-  ],
-  research: [
-    { name: "Robotics Software", mag: 1.0 },
-    { name: "(Sampling-based) MPC", mag: 1.0 },
-    { name: "Optimal Transport", mag: 1.0 },
-    { name: "Geometric Deep Learning", mag: 1.0 },
+    { name: "Bolivia", mag: 0.8 },
+    { name: "Georgia", mag: 0.8 },
+    { name: "Bosnia and Herzegovina", mag: 0.9 },
+    { name: "Peru", mag: 0.8 },
+    { name: "Sri Lanka", mag: 0.7 },
+    { name: "China", mag: 0.6 }
   ],
   quotes: [
-    { name: "A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools.", mag: 1.0 },
-    { name: "An expert is a person who has made all the mistakes that can be made in a very narrow field.", mag: 0.9 },
-    { name: "For every complex problem there is an answer that is clear, simple, and wrong.", mag: 0.7 },
+    { name: "A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools. -Douglas Adams", mag: 1.0 },
+    { name: "An expert is a person who has made all the mistakes that can be made in a very narrow field. -Niels Bohr", mag: 0.9 },
+    { name: "For every complex problem there is an answer that is clear, simple, and wrong. -H.L. Mencken", mag: 0.7 },
     { name: "Nothing is more permanent than a temporary solution.", mag: 0.7 },
   ],
   tools: [
-    { name: "Linux (Ubuntu, Arch)", mag: 0.95 },
-    { name: "Python, C++", mag: 0.85 },
-    { name: "VS Code", mag: 0.75 },
-    { name: "Obsidian", mag: 0.99 },
-    { name: "Figma, DrawIO, LaTeX", mag: 0.3 }
+    { name: "Linux (Ubuntu, Arch), Zsh", mag: 0.95 },       // OS
+    { name: "Python, C++", mag: 0.85 },                // Programming languages
+    { name: "JAX, PyTorch", mag: 0.99 },   // Libraries   
+    { name: "Obsidian, Figma", mag: 0.75 },   // Tools   
+    { name: "uv, fzf, Ruff, tmux", mag: 0.3 }
   ],
   constants: [
     { name: "Family & Friends", mag: 1.0 },
