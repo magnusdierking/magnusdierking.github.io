@@ -503,7 +503,7 @@ lucide.createIcons();
 
 (function ensureLucide(cb){
   if (window.lucide && lucide.createIcons) return cb();
-  var s=document.createElement('script'); s.src='https://unpkg.com/lucide@latest/dist/umd/lucide.min.js';
+  var s=document.createElement('script'); s.src='https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js';
   s.onload=cb; document.head.appendChild(s);
 })(function(){ lucide.createIcons(); });
 
