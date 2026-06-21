@@ -510,19 +510,18 @@ lucide.createIcons();
 // Data
 const DATA = {
   books: [
-    { name: "The Hitchhiker's Guide Trilogy of Five", mag: 0.99 },
+    { name: "The Hitchhiker Trilogy of Five", mag: 0.99 },
     { name: "Thinking Fast and Slow", mag: 0.9 },
     { name: "Ansichten der Natur", mag: 0.5 },
     { name: "Six (Not So) Easy Pieces", mag: 0.6 },
     { name: "Before the Coffee gets Cold", mag: 0.7 }
   ],
   travel: [
-    { name: "Bolivia", mag: 0.8 },
-    { name: "Georgia", mag: 0.8 },
-    { name: "Bosnia and Herzegovina", mag: 0.9 },
-    { name: "Peru", mag: 0.8 },
-    { name: "Sri Lanka", mag: 0.7 },
-    { name: "China", mag: 0.6 }
+    { name: "Cities: Chengdu, Tbilisi, Vienna", mag: 0.8 },
+    { name: "Food: Sichuan Province, Georgia, Basque Country", mag: 0.8 },
+    { name: "Nature: Bolivia, Montenegro, Scotland", mag: 0.8 },
+    { name: "History: Bosnia, Andalusia", mag: 0.8 },
+    { name: "Sights: Machu Picchu, Sigiriya, Zhangjiajie, Salar de Uyuni", mag: 0.8 },
   ],
   quotes: [
     { name: "A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools. -Douglas Adams", mag: 1.0 },
@@ -533,7 +532,7 @@ const DATA = {
   tools: [
     { name: "Linux (Ubuntu, Arch), Zsh", mag: 0.95 },       // OS
     { name: "Python, C++", mag: 0.85 },                // Programming languages
-    { name: "JAX, PyTorch", mag: 0.99 },   // Libraries   
+    { name: "JAX, PyTorch, MuJoCo", mag: 0.99 },   // Libraries   
     { name: "Obsidian, Figma", mag: 0.75 },   // Tools   
     { name: "uv, fzf, Ruff, tmux", mag: 0.3 }
   ],
@@ -542,7 +541,6 @@ const DATA = {
     { name: "Flat White", mag: 0.8 },
     { name: "Gym", mag: 0.9 },
     { name: "NFL (Houston Texans)", mag: 0.8 },
-    { name: "Korean Food", mag: 0.5 }
   ]
 };
 
