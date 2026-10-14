@@ -26,7 +26,7 @@ const backBtn2 = document.getElementById('backHome2');
 
 // --- Curved manifold mode ---
 let curvature = 0.0; // 0 = flat grid, 1 = fully curved
-const CURVATURE_BY_VIEW = { home: 0.0, projects: -0.45, notes: 0.65 };
+const CURVATURE_BY_VIEW = { home: 0.0, projects: -0.45, notes: 0.85 };
 
 // --- Functions to update badge ---
 const badge = document.querySelector('.badge');
